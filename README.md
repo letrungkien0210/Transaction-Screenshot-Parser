@@ -1,4 +1,4 @@
-# SnapTransact CLI
+# SnapTransact CLI - Vibe coding
 
 [![CI](https://github.com/your-org/Transaction-Screenshot-Parser/workflows/CI/badge.svg)](https://github.com/your-org/Transaction-Screenshot-Parser/actions)
 [![Coverage](https://img.shields.io/codecov/c/github/your-org/Transaction-Screenshot-Parser)](https://codecov.io/gh/your-org/Transaction-Screenshot-Parser)
