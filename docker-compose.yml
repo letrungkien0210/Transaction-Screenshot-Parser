@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  snap-transact:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: snap-transact-cli
+    volumes:
+      # Mount local directories for input/output
+      - ./input:/app/input:ro
+      - ./output:/app/output
+      # Mount source code for development (optional)
+      - ./src:/app/src:ro
+    environment:
+      # Set log level for development
+      - SNAP_TRANSACT_LOG_LEVEL=DEBUG
+      # Optional Sentry DSN for error tracking
+      - SNAP_TRANSACT_SENTRY_DSN=${SENTRY_DSN:-}
+    command: process /app/input --output /app/output/transactions.csv --verbose
+    
+  # Development service with hot reload
+  snap-transact-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: snap-transact-dev
+    volumes:
+      - .:/app
+      - /app/.venv  # Exclude virtual environment
+    working_dir: /app
+    environment:
+      - SNAP_TRANSACT_LOG_LEVEL=DEBUG
+    command: poetry run snap-transact --help
+    profiles:
+      - dev
+
+  # Service for running tests
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: snap-transact-test
+    volumes:
+      - .:/app
+      - /app/.venv
+    working_dir: /app
+    command: poetry run pytest --cov --cov-report=html --cov-report=term-missing
+    profiles:
+      - test 
