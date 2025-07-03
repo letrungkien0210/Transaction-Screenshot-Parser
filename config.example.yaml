@@ -1,0 +1,49 @@
+# SnapTransact CLI - Configuration Example
+# Copy this file to config.yaml and update the values as needed
+
+# OCR Configuration
+ocr:
+  # OCR language configuration (Tesseract language codes)
+  # Examples: "eng", "vie", "eng+vie", "chi_sim+eng"
+  language: "eng+vie"
+  
+  # OCR Engine Mode (0-3)
+  # 0: Legacy engine only
+  # 1: Neural nets LSTM engine only  
+  # 2: Legacy + LSTM engines
+  # 3: Default, based on what is available
+  oem: 3
+  
+  # Page Segmentation Mode (0-13)
+  # 6: Uniform block of text (default)
+  # 7: Single text line
+  # 8: Single word
+  # 11: Sparse text. Find as much text as possible
+  psm: 6
+  
+  # DPI for image processing
+  dpi: 300
+  
+  # Enable image preprocessing (true/false)
+  preprocess: true
+
+# Application Settings
+output_format: "csv"
+max_image_size: 10000000  # 10MB in bytes
+log_level: "INFO"
+
+# Supported image formats
+supported_formats:
+  - ".png"
+  - ".jpg"
+  - ".jpeg"
+  - ".tiff"
+  - ".bmp"
+
+# Error Tracking (Sentry)
+# Get your Sentry DSN from your Sentry project settings
+# Example: https://examplePublicKey@o0.ingest.sentry.io/0
+sentry_dsn: null
+
+# Development Settings
+# debug: true 
