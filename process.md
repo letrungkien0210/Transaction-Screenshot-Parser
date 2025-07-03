@@ -96,6 +96,7 @@ The application will be packaged in a **Docker container** to ensure a consisten
 - [x] Write unit tests for the Parser with pytest and mocker (100% complete - all modules tested)
 - [x] Set coverage threshold ≥ 85% (configured in pyproject.toml)
 - [x] Integrate Sentry to track errors in production (code ready, config example provided)
+- [x] Create project directory structure (images/ and output/ folders with documentation)
 ```
 
 ## 4. Progress Log
@@ -107,7 +108,7 @@ The application will be packaged in a **Docker container** to ensure a consisten
 | 04-07   | Testing Infrastructure|   ✅   | Complete unit tests for all modules |
 | 04-07   | Configuration Management | ✅   | Sentry integration, config examples |
 | 04-07   | Development Complete  |   ✅   | All checklist items finished |
-| 04-07   | CI/CD Pipeline       |   ❌   | GitHub Actions not setup yet |
+| 04-07   | Project Structure    |   ✅   | Added images/ and output/ directories with documentation |
 | 04-07   | Production Features  |   ❌   | Performance testing, optimization needed |
 
 ## 5. Prompt / Shortcut
@@ -150,7 +151,7 @@ poetry run pytest --cov --cov-fail-under=85
 .
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
+│       └── ci.yml            # GitHub Actions CI workflow (pending)
 ├── src/
 │   └── snap_transact/        # Main package name
 │       ├── __init__.py
@@ -162,15 +163,26 @@ poetry run pytest --cov --cov-fail-under=85
 │       └── utils.py          # Helper functions
 ├── tests/
 │   ├── __init__.py
-│   ├── test_parser.py
+│   ├── test_parser.py        # Parser module tests
+│   ├── test_core.py          # Core module tests
+│   ├── test_ocr.py           # OCR module tests
+│   ├── test_utils.py         # Utils module tests
+│   ├── test_integration.py   # Integration tests
 │   └── fixtures/             # Sample data for tests (images, text)
-├── .env.example              # Example environment variables
+├── images/                   # Input directory for transaction screenshots
+│   ├── .gitkeep
+│   └── README.md             # Usage instructions for images
+├── output/                   # Output directory for processed CSV files
+│   ├── .gitkeep
+│   └── README.md             # CSV structure and usage guide
+├── config.example.yaml       # Configuration template with Sentry setup
 ├── .gitignore
 ├── Dockerfile                # Multi-stage Dockerfile
-├── docker-compose.yml
+├── docker-compose.yml        # Docker Compose for development
 ├── poetry.lock
 ├── pyproject.toml            # Poetry's project management file
-└── README.md
+├── process.md                # Development process and progress tracking
+└── README.md                 # Project documentation
 ```
 
 ### 7.3 Additional Rules
@@ -188,6 +200,7 @@ poetry run pytest --cov --cov-fail-under=85
 - [x] **Complete Unit Tests**: Add tests for `core.py`, `ocr.py`, and integration tests
 - [x] **Coverage Target**: Achieve 85% test coverage threshold
 - [x] **Sentry Integration**: Error tracking configuration complete
+- [x] **Project Structure**: Organize directories for images and output with documentation
 - [ ] **GitHub Actions CI**: Set up lint → test → build → publish pipeline
 - [ ] **Performance Testing**: Verify ≤ 3s per image KPI
 

@@ -9,7 +9,7 @@ services:
     container_name: snap-transact-cli
     volumes:
       # Mount local directories for input/output
-      - ./input:/app/input:ro
+      - ./images:/app/input:ro
       - ./output:/app/output
       # Mount source code for development (optional)
       - ./src:/app/src:ro

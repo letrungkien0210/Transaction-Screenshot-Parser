@@ -42,9 +42,8 @@ docker run --rm \
 git clone https://github.com/your-org/Transaction-Screenshot-Parser.git
 cd Transaction-Screenshot-Parser
 
-# Place images in input/ directory
-mkdir -p input output
-cp /path/to/your/images/* input/
+# Place images in images/ directory
+cp /path/to/your/images/* images/
 
 # Run processing
 docker-compose up snap-transact
@@ -78,13 +77,13 @@ poetry run snap-transact --help
 
 ```bash
 # Process a single image
-snap-transact process image.png
+snap-transact process images/transaction1.png
 
-# Process all images in a directory
-snap-transact process /path/to/images/
+# Process all images in the images directory
+snap-transact process images/
 
-# Specify output file
-snap-transact process images/ --output results.csv
+# Specify output file in output directory
+snap-transact process images/ --output output/january_transactions.csv
 
 # Enable verbose logging
 snap-transact process images/ --verbose
@@ -97,7 +96,7 @@ snap-transact process images/ --verbose
 snap-transact process images/ --config config.yaml
 
 # Process with specific output location
-snap-transact process images/ --output /path/to/results.csv
+snap-transact process images/ --output output/monthly_report.csv
 
 # Get version information
 snap-transact --version
